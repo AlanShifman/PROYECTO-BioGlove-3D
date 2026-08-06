@@ -3,6 +3,7 @@
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
+    public float rotationSpeed = 10f;
 
     private Rigidbody rb;
 
@@ -18,6 +19,23 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontal, 0f, vertical);
 
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        if (movement.sqrMagnitude > 0.01f)
+        {
+            // Rotación suave
+            Quaternion targetRotation = Quaternion.LookRotation(movement);
+
+            Quaternion smoothRotation = Quaternion.Slerp(
+                rb.rotation,
+                targetRotation,
+                rotationSpeed * Time.fixedDeltaTime
+            );
+
+            rb.MoveRotation(smoothRotation);
+
+            // Movimiento
+            rb.MovePosition(
+                rb.position + movement.normalized * speed * Time.fixedDeltaTime
+            );
+        }
     }
 }
