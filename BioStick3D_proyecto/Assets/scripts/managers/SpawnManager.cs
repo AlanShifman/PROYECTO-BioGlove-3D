@@ -14,18 +14,19 @@ public class SpawnManager : MonoBehaviour
     }
 
     void SpawnTrash()
+{
+    int totalPoints = spawnPointsParent.childCount;
+
+    if (amountToSpawn > totalPoints)
     {
-        int spawned = 0;
-
-        while (spawned < amountToSpawn)
-        {
-            int randomIndex = Random.Range(0, spawnPointsParent.childCount);
-
-            Transform spawnPoint = spawnPointsParent.GetChild(randomIndex);
-
-            Instantiate(trashPrefab, spawnPoint.position, Quaternion.identity);
-
-            spawned++;
-        }
+        amountToSpawn = totalPoints;
     }
+
+    for (int i = 0; i < amountToSpawn; i++)
+    {
+        Transform spawnPoint = spawnPointsParent.GetChild(i);
+
+        Instantiate(trashPrefab, spawnPoint.position, Quaternion.identity);
+    }
+}
 }
