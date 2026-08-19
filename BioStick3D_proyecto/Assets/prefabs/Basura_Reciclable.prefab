@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 54539372054736260}
   - component: {fileID: 114746511026011178}
   m_Layer: 0
-  m_Name: Basura
+  m_Name: Basura_Reciclable
   m_TagString: Trash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b70b7719498f77544ac27ebd4bee2d43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isRecyclable: 0
+  isRecyclable: 1
