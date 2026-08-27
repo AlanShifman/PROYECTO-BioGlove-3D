@@ -2,10 +2,17 @@
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movimiento")]
     public float speed = 5f;
-    public float rotationSpeed = 10f;
+    public float acceleration = 10f;
+    public float deceleration = 15f;
+
+    [Header("Rotación")]
+    public float rotationSpeed = 8f;
 
     private Rigidbody rb;
+
+    private Vector3 currentVelocity = Vector3.zero;
 
     void Start()
     {
@@ -17,25 +24,56 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(horizontal, 0f, vertical);
+        Vector3 input = new Vector3(horizontal, 0f, vertical);
 
-        if (movement.sqrMagnitude > 0.01f)
+        // Evita que la velocidad diagonal sea mayor
+        input = Vector3.ClampMagnitude(input, 1f);
+
+        if (input.magnitude > 0.01f)
         {
-            // Rotación suave
-            Quaternion targetRotation = Quaternion.LookRotation(movement);
+            // -------------------------
+            // MOVIMIENTO SUAVE
+            // -------------------------
 
-            Quaternion smoothRotation = Quaternion.Slerp(
+            Vector3 targetVelocity = input * speed;
+
+            currentVelocity = Vector3.MoveTowards(
+                currentVelocity,
+                targetVelocity,
+                acceleration * Time.fixedDeltaTime
+            );
+
+            // -------------------------
+            // ROTACIÓN SUAVE
+            // -------------------------
+
+            Quaternion targetRotation = Quaternion.LookRotation(input);
+
+            Quaternion smoothRotation = Quaternion.RotateTowards(
                 rb.rotation,
                 targetRotation,
-                rotationSpeed * Time.fixedDeltaTime
+                rotationSpeed * 100f * Time.fixedDeltaTime
             );
 
             rb.MoveRotation(smoothRotation);
-
-            // Movimiento
-            rb.MovePosition(
-                rb.position + movement.normalized * speed * Time.fixedDeltaTime
+        }
+        else
+        {
+            // Cuando soltamos las teclas,
+            // desacelera suavemente
+            currentVelocity = Vector3.MoveTowards(
+                currentVelocity,
+                Vector3.zero,
+                deceleration * Time.fixedDeltaTime
             );
         }
+
+        // -------------------------
+        // APLICAR MOVIMIENTO
+        // -------------------------
+
+        rb.MovePosition(
+            rb.position + currentVelocity * Time.fixedDeltaTime
+        );
     }
 }

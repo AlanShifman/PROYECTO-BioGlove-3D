@@ -4,17 +4,39 @@ public class TrashBin : MonoBehaviour
 {
     public int points;
 
+    [Header("Tipo de tacho")]
+    public bool aceptaReciclable;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Trash"))
         {
-            Debug.Log("¡La basura entró al tacho!");
+            TrashType trashType = other.GetComponent<TrashType>();
+
+            if (trashType == null)
+            {
+                Debug.LogWarning("Esta basura no tiene TrashType.");
+                return;
+            }
 
             ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
 
             if (scoreManager != null)
             {
-                scoreManager.AddPoints(points);
+                if (trashType.isRecyclable == aceptaReciclable)
+                {
+                    // Tipo correcto
+                    scoreManager.AddPoints(points);
+
+                    Debug.Log("¡Residuo colocado correctamente!");
+                }
+                else
+                {
+                    // Tipo incorrecto
+                    scoreManager.AddPoints(-Mathf.Abs(points));
+
+                    Debug.Log("¡Residuo colocado en el tacho incorrecto!");
+                }
             }
 
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();

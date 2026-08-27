@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -267,6 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  acceleration: 10
+  deceleration: 15
   rotationSpeed: 10
 --- !u!54 &84838720
 Rigidbody:
@@ -383,6 +385,7 @@ GameObject:
   - component: {fileID: 106403991}
   - component: {fileID: 106403990}
   - component: {fileID: 106403994}
+  - component: {fileID: 106403995}
   m_Layer: 0
   m_Name: TachoNegro
   m_TagString: Untagged
@@ -474,7 +477,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca9da05200dee2418bf7a3aadf6a889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: -10
+  points: 20
+  aceptaReciclable: 0
+--- !u!65 &106403995
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106403989}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &131807102
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +915,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosPerdidos: 5
+  velocidad: 1.5
+  velocidadGiro: 180
+  tiempoMinimoCambio: 2
+  tiempoMaximoCambio: 5
+  tiempoMinimoParada: 0.5
+  tiempoMaximoParada: 1.5
 --- !u!135 &310926721
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3095,6 +3118,7 @@ GameObject:
   - component: {fileID: 1678127964}
   - component: {fileID: 1678127963}
   - component: {fileID: 1678127962}
+  - component: {fileID: 1678127967}
   m_Layer: 0
   m_Name: TachoReciclaje
   m_TagString: Untagged
@@ -3115,6 +3139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 20
+  aceptaReciclable: 1
 --- !u!65 &1678127963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3187,6 +3212,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1678127967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678127961}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1685324751
 GameObject:
   m_ObjectHideFlags: 0
