@@ -3,12 +3,26 @@ guid: abc0c5ba5f3ef3f4f973d0c15b639e92
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: AmbienteSinTexturas
+    100002: //RootNode
+    100004: Caminos
+    100006: Pasto
+    400000: AmbienteSinTexturas
+    400002: //RootNode
+    400004: Caminos
+    400006: Pasto
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
+    2100002: Material.001
+    2100004: Material.002
+    2300000: AmbienteSinTexturas
+    2300002: Caminos
+    2300004: Pasto
+    3300000: AmbienteSinTexturas
+    3300002: Caminos
+    3300004: Pasto
     4300000: AmbienteSinTexturas
+    4300002: Pasto
+    4300004: Caminos
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
