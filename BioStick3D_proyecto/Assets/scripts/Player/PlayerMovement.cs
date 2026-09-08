@@ -8,10 +8,9 @@ public class PlayerMovement : MonoBehaviour
     public float deceleration = 15f;
 
     [Header("Rotación")]
-    public float rotationSpeed = 8f;
+    public float rotationSpeed = 120f;
 
     private Rigidbody rb;
-
     private Vector3 currentVelocity = Vector3.zero;
 
     void Start()
@@ -24,43 +23,22 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 input = new Vector3(horizontal, 0f, vertical);
+        // AVANZAR / RETROCEDER
 
-        // Evita que la velocidad diagonal sea mayor
-        input = Vector3.ClampMagnitude(input, 1f);
+        Vector3 direction = transform.forward * vertical;
 
-        if (input.magnitude > 0.01f)
+        Vector3 targetVelocity = direction * speed;
+
+        if (Mathf.Abs(vertical) > 0.01f)
         {
-            // -------------------------
-            // MOVIMIENTO SUAVE
-            // -------------------------
-
-            Vector3 targetVelocity = input * speed;
-
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 targetVelocity,
                 acceleration * Time.fixedDeltaTime
             );
-
-            // -------------------------
-            // ROTACIÓN SUAVE
-            // -------------------------
-
-            Quaternion targetRotation = Quaternion.LookRotation(input);
-
-            Quaternion smoothRotation = Quaternion.RotateTowards(
-                rb.rotation,
-                targetRotation,
-                rotationSpeed * 100f * Time.fixedDeltaTime
-            );
-
-            rb.MoveRotation(smoothRotation);
         }
         else
         {
-            // Cuando soltamos las teclas,
-            // desacelera suavemente
             currentVelocity = Vector3.MoveTowards(
                 currentVelocity,
                 Vector3.zero,
@@ -68,9 +46,22 @@ public class PlayerMovement : MonoBehaviour
             );
         }
 
-        // -------------------------
+        // GIRAR IZQUIERDA / DERECHA
+
+        if (Mathf.Abs(horizontal) > 0.01f)
+        {
+            float rotation = horizontal * rotationSpeed * Time.fixedDeltaTime;
+
+            Quaternion turn = Quaternion.Euler(
+                0f,
+                rotation,
+                0f
+            );
+
+            rb.MoveRotation(rb.rotation * turn);
+        }
+
         // APLICAR MOVIMIENTO
-        // -------------------------
 
         rb.MovePosition(
             rb.position + currentVelocity * Time.fixedDeltaTime

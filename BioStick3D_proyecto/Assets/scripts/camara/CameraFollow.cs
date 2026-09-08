@@ -13,12 +13,19 @@ public class CameraFollow : MonoBehaviour
         if (target == null)
             return;
 
-        Vector3 desiredPosition = target.position + offset;
+        // El offset gira junto con el Player
+        Vector3 desiredPosition = target.TransformPoint(offset);
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // Movimiento suave
+        Vector3 smoothedPosition = Vector3.Lerp(
+            transform.position,
+            desiredPosition,
+            smoothSpeed * Time.deltaTime
+        );
 
         transform.position = smoothedPosition;
 
+        // La cámara mira al Player
         transform.LookAt(target);
     }
 }
