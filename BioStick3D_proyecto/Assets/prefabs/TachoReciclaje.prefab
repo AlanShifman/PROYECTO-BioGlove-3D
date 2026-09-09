@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4668513320152782673}
-  - component: {fileID: 4668513320152782674}
-  - component: {fileID: 4668513320152782675}
-  - component: {fileID: 4668513320152782676}
   - component: {fileID: 4668513320152782677}
-  - component: {fileID: 4668513320152782672}
+  - component: {fileID: 1493836365080343073}
+  - component: {fileID: 4373570404851823376}
   m_Layer: 0
   m_Name: TachoReciclaje
   m_TagString: Untagged
@@ -29,71 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4668513320152782678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.9979, y: 0.12912, z: -0.037462}
-  m_LocalScale: {x: 0.85586, y: 1.28379, z: 0.85586}
+  m_LocalPosition: {x: 5.9979, y: 0.172, z: -0.037462}
+  m_LocalScale: {x: 0.85586, y: 1.2120248, z: 0.85586}
   m_Children:
   - {fileID: 51797103455044276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4668513320152782674
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4668513320152782678}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4668513320152782675
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4668513320152782678}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!65 &4668513320152782676
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4668513320152782678}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4668513320152782677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 20
   aceptaReciclable: 1
---- !u!65 &4668513320152782672
+--- !u!65 &1493836365080343073
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,8 +59,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.9639186, y: 4.286498, z: 2.065844}
+  m_Center: {x: -0.042779874, y: 0.45117748, z: -0.22303522}
+--- !u!65 &4373570404851823376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668513320152782678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3917515, y: 4.286498, z: 3.904268}
+  m_Center: {x: 0.07114616, y: 0.45117748, z: -0.00654268}
 --- !u!1001 &51797103454918694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +84,10 @@ PrefabInstance:
     - target: {fileID: 100018, guid: dbbd15d69dddcb44e84af1e772e6c738, type: 3}
       propertyPath: m_Name
       value: TachoVerde
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: dbbd15d69dddcb44e84af1e772e6c738, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400018, guid: dbbd15d69dddcb44e84af1e772e6c738, type: 3}
       propertyPath: m_LocalPosition.x
