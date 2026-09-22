@@ -2,6 +2,7 @@
 
 public class TrashBin : MonoBehaviour
 {
+    public Animator anim;
     public int points;
 
     [Header("Tipo de tacho")]
@@ -11,6 +12,7 @@ public class TrashBin : MonoBehaviour
     {
         if (other.CompareTag("Trash"))
         {
+            anim.SetTrigger("Abrir");
             TrashType trashType = other.GetComponent<TrashType>();
 
             if (trashType == null)
