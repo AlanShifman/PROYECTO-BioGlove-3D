@@ -12,4 +12,14 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("Tutorial");
     }
+
+    public void AbrirInformacion()
+    {
+        SceneManager.LoadScene("Información");
+    }
+
+    public void VolverAlMenu()
+    {
+        SceneManager.LoadScene("MenúInicial");
+    }
 }
