@@ -5,10 +5,21 @@ public class TimerManager : MonoBehaviour
 {
     public float timeRemaining = 180f;
     public TextMeshProUGUI timerText;
-    public TextMeshProUGUI gameOverText;
+    public GameObject gameOverPanel;
+
+    private bool gameOver = false;
+
+    void Start()
+    {
+        Time.timeScale = 1;
+        gameOverPanel.SetActive(false);
+    }
 
     void Update()
     {
+        if (gameOver)
+            return;
+
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
@@ -22,7 +33,9 @@ public class TimerManager : MonoBehaviour
             timeRemaining = 0;
             timerText.text = "Tiempo: 0";
 
-            gameOverText.gameObject.SetActive(true);
+            gameOver = true;
+
+            gameOverPanel.SetActive(true);
 
             Time.timeScale = 0;
         }
