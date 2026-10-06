@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c8fd5e469bea0f54791d3decda23b889
+guid: c02c6114199939f4fb19c3be289e3129
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -4402,7 +4402,22 @@ ModelImporter:
     4300006: Cylinder.002
     4300008: Cylinder.001
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corteza
+    second: {fileID: 2100000, guid: 8751150dfeafb0e4cb91f0898325aaa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corteza2
+    second: {fileID: 2100000, guid: a16bad8f140f4bf49b91beefe5bcae6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree Branch
+    second: {fileID: 2100000, guid: 2c46fb113fbfc2e48966f7e25a97cfaf, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

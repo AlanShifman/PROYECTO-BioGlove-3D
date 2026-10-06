@@ -40,4 +40,16 @@ public class TimerManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+    public void RestartGame()
+{
+    Time.timeScale = 1;
+    UnityEngine.SceneManagement.SceneManager.LoadScene(
+        UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+    );
+}
+public void BackToMenu()
+{
+    Time.timeScale = 1;
+    UnityEngine.SceneManagement.SceneManager.LoadScene("MenúInicial");
+}
 }
