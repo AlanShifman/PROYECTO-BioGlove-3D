@@ -7495,6 +7495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CintaTransportadora
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2a3d1abf2a826b04b8eca8f6d4faea8b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a3d1abf2a826b04b8eca8f6d4faea8b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.21599
@@ -7505,7 +7509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a3d1abf2a826b04b8eca8f6d4faea8b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.34668
+      value: -57.55
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2a3d1abf2a826b04b8eca8f6d4faea8b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -72666,7 +72670,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!154 &1622664011
 TerrainCollider:
