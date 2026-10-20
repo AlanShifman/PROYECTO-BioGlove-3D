@@ -4,7 +4,7 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform target;
 
-    public Vector3 offset = new Vector3(0, 3f, -10);
+    public Vector3 offset = new Vector3(0, 8f, -10f);
 
     public float smoothSpeed = 5f;
 
@@ -26,6 +26,6 @@ public class CameraFollow : MonoBehaviour
         transform.position = smoothedPosition;
 
         // La cámara mira al Player
-        transform.LookAt(target);
+        transform.LookAt(target.position + Vector3.up * 3f);
     }
 }
