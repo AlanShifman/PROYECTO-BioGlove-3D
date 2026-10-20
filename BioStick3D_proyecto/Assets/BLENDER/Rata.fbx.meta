@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 8056a64daa9264341bad94631a37ccaf
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Cabeza
+    100002: Cabeza_end
+    100004: Cola_1
+    100006: Cola_2
+    100008: Cola_3
+    100010: Cola_4
+    100012: Cola_4_end
+    100014: Cuerpo
+    100016: Pata_Del_Der
+    100018: Pata_Del_Der_end
+    100020: Pata_Del_Izq
+    100022: Pata_Del_Izq_end
+    100024: Pata_Tras_Der
+    100026: Pata_Tras_Der_end
+    100028: Pata_Tras_Izq
+    100030: Pata_Tras_Izq_end
+    100032: //RootNode
+    100034: Rata
+    100036: Rata_Rig
+    100038: Root
+    400000: Cabeza
+    400002: Cabeza_end
+    400004: Cola_1
+    400006: Cola_2
+    400008: Cola_3
+    400010: Cola_4
+    400012: Cola_4_end
+    400014: Cuerpo
+    400016: Pata_Del_Der
+    400018: Pata_Del_Der_end
+    400020: Pata_Del_Izq
+    400022: Pata_Del_Izq_end
+    400024: Pata_Tras_Der
+    400026: Pata_Tras_Der_end
+    400028: Pata_Tras_Izq
+    400030: Pata_Tras_Izq_end
+    400032: //RootNode
+    400034: Rata
+    400036: Rata_Rig
+    400038: Root
+    2100000: Rata_Pelo
+    2100002: Rata_Pelo_Claro
+    2100004: Rata_Rosa
+    2100006: Rata_Negro
+    2100008: Rata_Claro
+    2100010: Rata_Pelo_Oscuro
+    4300000: Rata
+    7400000: Rata_Rig|Rata_Correr
+    7400002: Rata_Rig|Rata_Idle
+    9500000: //RootNode
+    13700000: Rata
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
