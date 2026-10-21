@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject trashPrefab;
+    public GameObject[] trashPrefabs;
     public Transform spawnPointsParent;
 
-    public int amountToSpawn = 10;
+    public int amountToSpawn = 15;
 
     private int currentTrash = 0;
 
@@ -33,17 +34,20 @@ public class SpawnManager : MonoBehaviour
     {
         int totalPoints = spawnPointsParent.childCount;
 
-        if (totalPoints == 0)
+        if (totalPoints == 0 || trashPrefabs.Length == 0)
         {
-            Debug.LogWarning("No hay SpawnPoints.");
+            Debug.LogWarning("Faltan SpawnPoints o prefabs de basura.");
             return;
         }
 
-        int randomIndex = Random.Range(0, totalPoints);
+        int randomPointIndex = Random.Range(0, totalPoints);
+        int randomTrashIndex = Random.Range(0, trashPrefabs.Length);
 
-        Transform spawnPoint = spawnPointsParent.GetChild(randomIndex);
+        Transform spawnPoint = spawnPointsParent.GetChild(randomPointIndex);
 
-        Instantiate(trashPrefab, spawnPoint.position, Quaternion.identity);
+        GameObject selectedTrash = trashPrefabs[randomTrashIndex];
+
+        Instantiate(selectedTrash, spawnPoint.position, Quaternion.identity);
 
         currentTrash++;
     }
