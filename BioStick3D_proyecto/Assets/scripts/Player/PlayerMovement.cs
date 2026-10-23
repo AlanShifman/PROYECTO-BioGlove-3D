@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector3 currentVelocity = Vector3.zero;
 
+    public Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
                 targetVelocity,
                 acceleration * Time.fixedDeltaTime
             );
+            
         }
         else
         {
@@ -44,8 +47,11 @@ public class PlayerMovement : MonoBehaviour
                 Vector3.zero,
                 deceleration * Time.fixedDeltaTime
             );
+                    
         }
-
+//animaciones
+        anim.SetFloat("Speed", vertical);
+        Debug.Log(vertical);
         // GIRAR IZQUIERDA / DERECHA
 
         if (Mathf.Abs(horizontal) > 0.01f)
@@ -66,5 +72,7 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(
             rb.position + currentVelocity * Time.fixedDeltaTime
         );
+
+
     }
 }
