@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class TrashPickup : MonoBehaviour
 {
     public Transform holdPoint;
+    public float pickupRange = 3f;
 
     private GameObject heldTrash;
 
@@ -23,27 +25,48 @@ public class TrashPickup : MonoBehaviour
 
     void TryPickUp()
     {
-        Collider[] objects = Physics.OverlapSphere(transform.position, 2f);
+        Collider[] objects = Physics.OverlapSphere(
+            transform.position + Vector3.up,
+            pickupRange
+        );
 
         foreach (Collider obj in objects)
         {
             if (obj.CompareTag("Trash"))
             {
-                heldTrash = obj.gameObject;
+                Rigidbody rb = obj.GetComponentInParent<Rigidbody>();
 
-                heldTrash.GetComponent<Rigidbody>().isKinematic = true;
+                if (rb == null)
+                {
+                    Debug.LogWarning("La basura no tiene Rigidbody.");
+                    continue;
+                }
+
+                heldTrash = rb.gameObject;
+
+                rb.isKinematic = true;
                 heldTrash.transform.SetParent(holdPoint);
                 heldTrash.transform.localPosition = Vector3.zero;
+                heldTrash.transform.localRotation = Quaternion.identity;
 
-                break;
+                Debug.Log("¡Basura agarrada!");
+                return;
             }
         }
+
+        Debug.Log("No se encontró basura cerca.");
     }
 
     void DropTrash()
     {
-        heldTrash.GetComponent<Rigidbody>().isKinematic = false;
+        Rigidbody rb = heldTrash.GetComponent<Rigidbody>();
+
         heldTrash.transform.SetParent(null);
+
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+        }
 
         heldTrash = null;
     }
