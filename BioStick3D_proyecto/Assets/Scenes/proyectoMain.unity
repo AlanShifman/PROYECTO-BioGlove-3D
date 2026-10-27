@@ -862,7 +862,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &84838721
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -874,8 +874,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.0502324, z: 1}
-  m_Center: {x: 0, y: 0.7294004, z: 0}
+  m_Size: {x: 1, y: 1.8023151, z: 1}
+  m_Center: {x: 0, y: 0.97986364, z: 0}
 --- !u!23 &84838722
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5884,7 +5884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: f3e607bcf5527eb499903e72413c691b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09
+      value: 0.013
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: f3e607bcf5527eb499903e72413c691b, type: 3}
       propertyPath: m_LocalPosition.z
