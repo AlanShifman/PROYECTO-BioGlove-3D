@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 public class TrashBin : MonoBehaviour
 {
@@ -10,45 +11,63 @@ public class TrashBin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Trash"))
+        Debug.Log("1. Algo entro en el trigger del tacho");
+
+        Transform basura = other.transform;
+
+        while (basura != null && !basura.CompareTag("Trash"))
         {
-            anim.SetTrigger("Abrir");
-            TrashType trashType = other.GetComponent<TrashType>();
-
-            if (trashType == null)
-            {
-                Debug.LogWarning("Esta basura no tiene TrashType.");
-                return;
-            }
-
-            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
-
-            if (scoreManager != null)
-            {
-                if (trashType.isRecyclable == aceptaReciclable)
-                {
-                    // Tipo correcto
-                    scoreManager.AddPoints(points);
-
-                    Debug.Log("¡Residuo colocado correctamente!");
-                }
-                else
-                {
-                    // Tipo incorrecto
-                    scoreManager.AddPoints(-Mathf.Abs(points));
-
-                    Debug.Log("¡Residuo colocado en el tacho incorrecto!");
-                }
-            }
-
-            SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
-
-            if (spawnManager != null)
-            {
-                spawnManager.TrashDestroyed();
-            }
-
-            Destroy(other.gameObject);
+            basura = basura.parent;
         }
+
+        if (basura == null)
+            return;
+
+        Debug.Log("2. El tacho detecto una basura");
+
+        if (anim != null)
+            anim.SetTrigger("Abrir");
+        else
+            Debug.LogWarning("El tacho no tiene Animator asignado");
+
+        TrashType trashType = basura.GetComponent<TrashType>();
+
+        if (trashType == null)
+        {
+            trashType = basura.GetComponentInChildren<TrashType>();
+        }
+
+        if (trashType == null)
+        {
+            Debug.LogWarning("3. La basura no tiene TrashType");
+            return;
+        }
+
+        Debug.Log("3. TrashType encontrado. Reciclable: " + trashType.isRecyclable);
+
+        ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+
+        if (scoreManager != null)
+        {
+            if (trashType.isRecyclable == aceptaReciclable)
+            {
+                scoreManager.AddPoints(points);
+                Debug.Log("4. Residuo colocado correctamente");
+            }
+            else
+            {
+                scoreManager.AddPoints(-Mathf.Abs(points));
+                Debug.Log("4. Residuo colocado en el tacho incorrecto");
+            }
+        }
+
+        SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
+
+        if (spawnManager != null)
+        {
+            spawnManager.TrashDestroyed();
+        }
+
+        Destroy(basura.gameObject);
     }
 }

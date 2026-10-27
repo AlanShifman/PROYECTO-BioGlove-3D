@@ -13,13 +13,9 @@ public class TrashPickup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (heldTrash == null)
-            {
                 TryPickUp();
-            }
             else
-            {
                 DropTrash();
-            }
         }
     }
 
@@ -32,42 +28,87 @@ public class TrashPickup : MonoBehaviour
 
         foreach (Collider obj in objects)
         {
-            if (obj.CompareTag("Trash"))
+            Transform trashObject = obj.transform;
+
+            while (trashObject != null &&
+                   !trashObject.CompareTag("Trash"))
             {
-                Rigidbody rb = obj.GetComponentInParent<Rigidbody>();
+                trashObject = trashObject.parent;
+            }
 
-                if (rb == null)
-                {
-                    Debug.LogWarning("La basura no tiene Rigidbody.");
-                    continue;
-                }
+            if (trashObject == null)
+                continue;
 
-                heldTrash = rb.gameObject;
+            Rigidbody rb = trashObject.GetComponent<Rigidbody>();
 
-                rb.isKinematic = true;
-                heldTrash.transform.SetParent(holdPoint);
-                heldTrash.transform.localPosition = Vector3.zero;
-                heldTrash.transform.localRotation = Quaternion.identity;
+            if (rb == null)
+                rb = trashObject.GetComponentInParent<Rigidbody>();
 
-                Debug.Log("¡Basura agarrada!");
+            if (rb == null)
+            {
+                Debug.LogWarning("La basura no tiene Rigidbody.");
+                continue;
+            }
+
+            if (holdPoint == null)
+            {
+                Debug.LogError("¡Falta asignar el Hold Point!");
                 return;
             }
+
+        heldTrash = rb.gameObject;
+
+        // Evitar que la basura empuje al personaje
+        Collider[] colliders = heldTrash.GetComponentsInChildren<Collider>();
+
+        foreach (Collider col in colliders)
+     {
+        col.enabled = false;
+     }
+
+rb.isKinematic = true;
+
+            heldTrash.transform.SetParent(holdPoint);
+            heldTrash.transform.localPosition = Vector3.zero;
+            heldTrash.transform.localRotation = Quaternion.identity;
+
+            Debug.Log("¡Basura agarrada!");
+            return;
         }
 
         Debug.Log("No se encontró basura cerca.");
     }
 
-    void DropTrash()
+    
+void DropTrash()
+{
+    if (heldTrash == null)
+        return;
+
+    Rigidbody rb = heldTrash.GetComponent<Rigidbody>();
+
+    // Separar la basura del personaje y lanzarla hacia adelante
+    heldTrash.transform.SetParent(null);
+    heldTrash.transform.position =
+        transform.position + transform.forward * 1f + Vector3.up * 1f;
+
+    Collider[] colliders =
+        heldTrash.GetComponentsInChildren<Collider>();
+
+    foreach (Collider col in colliders)
     {
-        Rigidbody rb = heldTrash.GetComponent<Rigidbody>();
-
-        heldTrash.transform.SetParent(null);
-
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-        }
-
-        heldTrash = null;
+        col.enabled = true;
     }
+
+    if (rb != null)
+    {
+        rb.isKinematic = false;
+        rb.velocity = transform.forward * 6f + Vector3.up * 2f;
+    }
+
+    heldTrash = null;
+
+    Debug.Log("¡Basura lanzada!");
+}
+
 }
