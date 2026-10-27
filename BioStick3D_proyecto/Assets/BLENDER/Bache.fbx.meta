@@ -1,30 +1,23 @@
 fileFormatVersion: 2
-guid: 3a2fc7987b4a70c408c5ea046d65942a
+guid: 54f886cf9e2df5347bb04806d2d4aaa4
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Bache_1
+    100004: Bache_1.001
     400000: //RootNode
-    2100000: Azul
-    2100002: Metal
-    2100004: Amarillo
-    2100006: Madera
-    2100008: Rojo
-    2100010: Material.001
-    2100012: VerdeJuego
-    2100014: AgarreAmarillo
-    2100016: AgarreVerde
-    2100018: AgarreAzul
-    2100020: AgarreRojo
-    2100022: Madera.001
-    2100024: Material.002
-    2100026: Material.006
-    2100028: Material.005
-    2100030: Material.004
-    2100032: Material.007
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Puente_AB_baluster
+    400002: Bache_1
+    400004: Bache_1.001
+    2100000: Bache_Adoquin_Gris
+    2100002: Bache_Adoquin_Marron
+    2100004: Bache_Tierra
+    2300000: Bache_1
+    2300002: Bache_1.001
+    3300000: Bache_1
+    3300002: Bache_1.001
+    4300000: Bache_1
+    4300002: Bache_1.001
   externalObjects: {}
   materials:
     importMaterials: 1

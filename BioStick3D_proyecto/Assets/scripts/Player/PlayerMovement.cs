@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -27,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
         // AVANZAR / RETROCEDER
 
-        Vector3 direction = transform.forward * vertical;
+    Vector3 direction = transform.forward * vertical;
+    direction.y = 0f;
 
         Vector3 targetVelocity = direction * speed;
 
@@ -52,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 //animaciones
         anim.SetFloat("Speed", vertical);
         Debug.Log(vertical);
+        
         // GIRAR IZQUIERDA / DERECHA
 
         if (Mathf.Abs(horizontal) > 0.01f)
