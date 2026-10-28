@@ -28,27 +28,24 @@ public class TrashPickup : MonoBehaviour
 
         foreach (Collider obj in objects)
         {
-            Transform trashObject = obj.transform;
+            Transform basura = obj.transform;
 
-            while (trashObject != null &&
-                   !trashObject.CompareTag("Trash"))
+            while (basura != null &&
+                   !basura.CompareTag("Trash"))
             {
-                trashObject = trashObject.parent;
+                basura = basura.parent;
             }
 
-            if (trashObject == null)
+            if (basura == null)
                 continue;
 
-            Rigidbody rb = trashObject.GetComponent<Rigidbody>();
+            Rigidbody rb = basura.GetComponent<Rigidbody>();
 
             if (rb == null)
-                rb = trashObject.GetComponentInParent<Rigidbody>();
+                rb = basura.GetComponentInParent<Rigidbody>();
 
             if (rb == null)
-            {
-                Debug.LogWarning("La basura no tiene Rigidbody.");
                 continue;
-            }
 
             if (holdPoint == null)
             {
@@ -56,17 +53,15 @@ public class TrashPickup : MonoBehaviour
                 return;
             }
 
-        heldTrash = rb.gameObject;
+            heldTrash = rb.gameObject;
 
-        // Evitar que la basura empuje al personaje
-        Collider[] colliders = heldTrash.GetComponentsInChildren<Collider>();
+            Collider[] colliders =
+                heldTrash.GetComponentsInChildren<Collider>();
 
-        foreach (Collider col in colliders)
-     {
-        col.enabled = false;
-     }
+            foreach (Collider col in colliders)
+                col.enabled = false;
 
-rb.isKinematic = true;
+            rb.isKinematic = true;
 
             heldTrash.transform.SetParent(holdPoint);
             heldTrash.transform.localPosition = Vector3.zero;
@@ -79,36 +74,71 @@ rb.isKinematic = true;
         Debug.Log("No se encontró basura cerca.");
     }
 
-    
-void DropTrash()
-{
-    if (heldTrash == null)
-        return;
-
-    Rigidbody rb = heldTrash.GetComponent<Rigidbody>();
-
-    // Separar la basura del personaje y lanzarla hacia adelante
-    heldTrash.transform.SetParent(null);
-    heldTrash.transform.position =
-        transform.position + transform.forward * 1f + Vector3.up * 1f;
-
-    Collider[] colliders =
-        heldTrash.GetComponentsInChildren<Collider>();
-
-    foreach (Collider col in colliders)
+    void DropTrash()
     {
-        col.enabled = true;
+        if (heldTrash == null)
+            return;
+
+        GameObject basura = heldTrash;
+
+        // Buscar el tacho más cercano.
+        TrashBin[] tachos = FindObjectsOfType<TrashBin>();
+        TrashBin tachoCercano = null;
+        float distanciaMinima = 2.5f;
+
+        foreach (TrashBin tacho in tachos)
+        {
+            float distancia = Vector3.Distance(
+                transform.position,
+                tacho.transform.position
+            );
+
+            if (distancia < distanciaMinima)
+            {
+                distanciaMinima = distancia;
+                tachoCercano = tacho;
+            }
+        }
+
+        // Soltar la basura.
+        basura.transform.SetParent(null);
+
+        Collider[] colliders =
+            basura.GetComponentsInChildren<Collider>();
+
+        foreach (Collider col in colliders)
+            col.enabled = true;
+
+        Rigidbody rb = basura.GetComponent<Rigidbody>();
+
+        if (tachoCercano != null)
+        {
+            // Colocar la basura dentro de la zona del tacho.
+            basura.transform.position =
+                tachoCercano.transform.position + Vector3.up * 0.5f;
+
+            if (rb != null)
+            {
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = false;
+            }
+
+            Debug.Log("Basura soltada cerca del tacho.");
+        }
+        else
+        {
+            // Si no hay tacho cerca, soltar normalmente.
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+                rb.velocity =
+                    transform.forward * 3f + Vector3.up;
+            }
+
+            Debug.Log("¡Basura soltada!");
+        }
+
+        heldTrash = null;
     }
-
-    if (rb != null)
-    {
-        rb.isKinematic = false;
-        rb.velocity = transform.forward * 6f + Vector3.up * 2f;
-    }
-
-    heldTrash = null;
-
-    Debug.Log("¡Basura lanzada!");
-}
-
 }

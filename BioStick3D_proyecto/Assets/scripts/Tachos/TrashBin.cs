@@ -24,6 +24,7 @@ public class TrashBin : MonoBehaviour
             return;
 
         Debug.Log("2. El tacho detecto una basura");
+        Debug.Log("TAG ENCONTRADO: " + basura.name);
 
         if (anim != null)
             anim.SetTrigger("Abrir");
@@ -69,5 +70,6 @@ public class TrashBin : MonoBehaviour
         }
 
         Destroy(basura.gameObject);
+        Debug.Log("PUNTOS PROCESADOS. DESTRUYENDO: " + basura.name);
     }
 }
