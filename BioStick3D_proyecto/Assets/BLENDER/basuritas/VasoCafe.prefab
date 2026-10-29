@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 3162169059419769043}
   - component: {fileID: 4216671345031585635}
   - component: {fileID: 7611359052434583242}
+  - component: {fileID: 114844656841054984}
   m_Layer: 0
   m_Name: VasoCafe
   m_TagString: Untagged
@@ -141,6 +142,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114844656841054984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3162169059420001523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70b7719498f77544ac27ebd4bee2d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRecyclable: 0
 --- !u!1 &3162169059420001525
 GameObject:
   m_ObjectHideFlags: 0
