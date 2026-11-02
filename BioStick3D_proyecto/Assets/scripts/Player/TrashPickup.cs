@@ -1,20 +1,23 @@
 ﻿
 using UnityEngine;
+using System.Collections;
 
 public class TrashPickup : MonoBehaviour
 {
     public Transform holdPoint;
     public float pickupRange = 3f;
+    public Animator anim;
 
     private GameObject heldTrash;
+    private bool pickingUp = false;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (heldTrash == null)
+            if (heldTrash == null && !pickingUp)
                 TryPickUp();
-            else
+            else if (heldTrash != null)
                 DropTrash();
         }
     }
@@ -53,25 +56,48 @@ public class TrashPickup : MonoBehaviour
                 return;
             }
 
-            heldTrash = rb.gameObject;
+            pickingUp = true;
 
-            Collider[] colliders =
-                heldTrash.GetComponentsInChildren<Collider>();
+            if (anim != null)
+                anim.SetTrigger("Pickup");
 
-            foreach (Collider col in colliders)
-                col.enabled = false;
+            StartCoroutine(AgarrarDespues(rb.gameObject));
 
-            rb.isKinematic = true;
-
-            heldTrash.transform.SetParent(holdPoint);
-            heldTrash.transform.localPosition = Vector3.zero;
-            heldTrash.transform.localRotation = Quaternion.identity;
-
-            Debug.Log("¡Basura agarrada!");
             return;
         }
 
         Debug.Log("No se encontró basura cerca.");
+    }
+
+    IEnumerator AgarrarDespues(GameObject basura)
+    {
+        yield return new WaitForSeconds(1f);
+
+        if (basura == null)
+        {
+            pickingUp = false;
+            yield break;
+        }
+
+        heldTrash = basura;
+
+        Collider[] colliders =
+            heldTrash.GetComponentsInChildren<Collider>();
+
+        foreach (Collider col in colliders)
+            col.enabled = false;
+
+        Rigidbody rb = heldTrash.GetComponent<Rigidbody>();
+
+        rb.isKinematic = true;
+
+        heldTrash.transform.SetParent(holdPoint);
+        heldTrash.transform.localPosition = Vector3.zero;
+        heldTrash.transform.localRotation = Quaternion.identity;
+
+        pickingUp = false;
+
+        Debug.Log("¡Basura agarrada!");
     }
 
     void DropTrash()
@@ -81,7 +107,6 @@ public class TrashPickup : MonoBehaviour
 
         GameObject basura = heldTrash;
 
-        // Buscar el tacho más cercano.
         TrashBin[] tachos = FindObjectsOfType<TrashBin>();
         TrashBin tachoCercano = null;
         float distanciaMinima = 2.5f;
@@ -100,7 +125,6 @@ public class TrashPickup : MonoBehaviour
             }
         }
 
-        // Soltar la basura.
         basura.transform.SetParent(null);
 
         Collider[] colliders =
@@ -113,7 +137,6 @@ public class TrashPickup : MonoBehaviour
 
         if (tachoCercano != null)
         {
-            // Colocar la basura dentro de la zona del tacho.
             basura.transform.position =
                 tachoCercano.transform.position + Vector3.up * 0.5f;
 
@@ -123,20 +146,15 @@ public class TrashPickup : MonoBehaviour
                 rb.angularVelocity = Vector3.zero;
                 rb.isKinematic = false;
             }
-
-            Debug.Log("Basura soltada cerca del tacho.");
         }
         else
         {
-            // Si no hay tacho cerca, soltar normalmente.
             if (rb != null)
             {
                 rb.isKinematic = false;
                 rb.velocity =
                     transform.forward * 3f + Vector3.up;
             }
-
-            Debug.Log("¡Basura soltada!");
         }
 
         heldTrash = null;

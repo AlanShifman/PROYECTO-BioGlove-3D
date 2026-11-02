@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         }
 //animaciones
         anim.SetFloat("Speed", vertical);
+        anim.SetFloat("SpeedAbs", Mathf.Abs(vertical));
         Debug.Log(vertical);
         
         // GIRAR IZQUIERDA / DERECHA

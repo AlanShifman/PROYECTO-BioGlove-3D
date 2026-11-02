@@ -1000,6 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPoint: {fileID: 1976293071}
   pickupRange: 3
+  anim: {fileID: 208095223}
 --- !u!1 &88220369
 GameObject:
   m_ObjectHideFlags: 0
